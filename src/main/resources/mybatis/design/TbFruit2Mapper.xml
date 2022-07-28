@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.design.mapper.TbFruit2Mapper">
+    
+    <resultMap type="TbFruit2" id="TbFruit2Result">
+        <result property="frid"    column="frid"    />
+        <result property="dzh"    column="dzh"    />
+        <result property="fname"    column="fname"    />
+        <result property="disp1"    column="disp1"    />
+        <result property="rounds"    column="rounds"    />
+        <result property="length1"    column="length1"    />
+        <result property="dia1"    column="dia1"    />
+        <result property="dia2"    column="dia2"    />
+        <result property="dia3"    column="dia3"    />
+        <result property="coe3"    column="coe3"    />
+        <result property="length2"    column="length2"    />
+        <result property="length3"    column="length3"    />
+        <result property="height1"    column="height1"    />
+        <result property="length4"    column="length4"    />
+        <result property="radius1"    column="radius1"    />
+        <result property="mat1"    column="mat1"    />
+        <result property="torsion1"    column="torsion1"    />
+        <result property="stress1"    column="stress1"    />
+        <result property="stress2"    column="stress2"    />
+        <result property="deform"    column="deform"    />
+    </resultMap>
+
+    <sql id="selectTbFruit2Vo">
+        select frid, dzh, fname, disp1, rounds, length1, dia1, dia2, dia3, coe3, length2, length3, height1, length4, radius1, mat1, torsion1, stress1, stress2, deform from tb_fruit2
+    </sql>
+
+    <select id="selectTbFruit2List" parameterType="TbFruit2" resultMap="TbFruit2Result">
+        <include refid="selectTbFruit2Vo"/>
+        <where>  
+            <if test="frid != null "> and frid = #{frid}</if>
+            <if test="dzh != null  and dzh != ''"> and dzh = #{dzh}</if>
+        </where>
+    </select>
+    
+    <select id="selectTbFruit2ByFrid" parameterType="Long" resultMap="TbFruit2Result">
+        <include refid="selectTbFruit2Vo"/>
+        where frid = #{frid}
+    </select>
+        
+    <insert id="insertTbFruit2" parameterType="TbFruit2">
+        insert into tb_fruit2
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="frid != null">frid,</if>
+            <if test="dzh != null">dzh,</if>
+            <if test="fname != null">fname,</if>
+            <if test="disp1 != null">disp1,</if>
+            <if test="rounds != null">rounds,</if>
+            <if test="length1 != null">length1,</if>
+            <if test="dia1 != null">dia1,</if>
+            <if test="dia2 != null">dia2,</if>
+            <if test="dia3 != null">dia3,</if>
+            <if test="coe3 != null">coe3,</if>
+            <if test="length2 != null">length2,</if>
+            <if test="length3 != null">length3,</if>
+            <if test="height1 != null">height1,</if>
+            <if test="length4 != null">length4,</if>
+            <if test="radius1 != null">radius1,</if>
+            <if test="mat1 != null">mat1,</if>
+            <if test="torsion1 != null">torsion1,</if>
+            <if test="stress1 != null">stress1,</if>
+            <if test="stress2 != null">stress2,</if>
+            <if test="deform != null">deform,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="frid != null">#{frid},</if>
+            <if test="dzh != null">#{dzh},</if>
+            <if test="fname != null">#{fname},</if>
+            <if test="disp1 != null">#{disp1},</if>
+            <if test="rounds != null">#{rounds},</if>
+            <if test="length1 != null">#{length1},</if>
+            <if test="dia1 != null">#{dia1},</if>
+            <if test="dia2 != null">#{dia2},</if>
+            <if test="dia3 != null">#{dia3},</if>
+            <if test="coe3 != null">#{coe3},</if>
+            <if test="length2 != null">#{length2},</if>
+            <if test="length3 != null">#{length3},</if>
+            <if test="height1 != null">#{height1},</if>
+            <if test="length4 != null">#{length4},</if>
+            <if test="radius1 != null">#{radius1},</if>
+            <if test="mat1 != null">#{mat1},</if>
+            <if test="torsion1 != null">#{torsion1},</if>
+            <if test="stress1 != null">#{stress1},</if>
+            <if test="stress2 != null">#{stress2},</if>
+            <if test="deform != null">#{deform},</if>
+         </trim>
+    </insert>
+
+    <update id="updateTbFruit2" parameterType="TbFruit2">
+        update tb_fruit2
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dzh != null">dzh = #{dzh},</if>
+            <if test="fname != null">fname = #{fname},</if>
+            <if test="disp1 != null">disp1 = #{disp1},</if>
+            <if test="rounds != null">rounds = #{rounds},</if>
+            <if test="length1 != null">length1 = #{length1},</if>
+            <if test="dia1 != null">dia1 = #{dia1},</if>
+            <if test="dia2 != null">dia2 = #{dia2},</if>
+            <if test="dia3 != null">dia3 = #{dia3},</if>
+            <if test="coe3 != null">coe3 = #{coe3},</if>
+            <if test="length2 != null">length2 = #{length2},</if>
+            <if test="length3 != null">length3 = #{length3},</if>
+            <if test="height1 != null">height1 = #{height1},</if>
+            <if test="length4 != null">length4 = #{length4},</if>
+            <if test="radius1 != null">radius1 = #{radius1},</if>
+            <if test="mat1 != null">mat1 = #{mat1},</if>
+            <if test="torsion1 != null">torsion1 = #{torsion1},</if>
+            <if test="stress1 != null">stress1 = #{stress1},</if>
+            <if test="stress2 != null">stress2 = #{stress2},</if>
+            <if test="deform != null">deform = #{deform},</if>
+        </trim>
+        where frid = #{frid}
+    </update>
+
+    <delete id="deleteTbFruit2ByFrid" parameterType="Long">
+        delete from tb_fruit2 where frid = #{frid}
+    </delete>
+
+    <delete id="deleteTbFruit2ByFrids" parameterType="String">
+        delete from tb_fruit2 where frid in 
+        <foreach item="frid" collection="array" open="(" separator="," close=")">
+            #{frid}
+        </foreach>
+    </delete>
+</mapper>

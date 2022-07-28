@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.project.design.mapper.TbQzsjjsMapper">
+    <resultMap type="TbQzsjjs" id="TbQzsjjsResult">
+        <result property="prId"    column="pr_id"    />
+        <result property="dzh"    column="dzh"    />
+        <result property="name"    column="name"    />
+        <result property="jcds"    column="jcds"    />
+        <result property="gcl"    column="gcl"    />
+        <result property="gclxc"    column="gclxc"    />
+        <result property="hkxc"    column="hkxc"    />
+        <result property="zdxccs"    column="zdxccs"    />
+        <result property="lianganLength"    column="liangan_length"    />
+        <result property="quzhouZcjDia"    column="quzhou_zcj_dia"    />
+        <result property="quzhouQbjDia"    column="quzhou_qbj_dia"    />
+        <result property="quzhouQtmDia"    column="quzhou_qtm_dia"    />
+        <result property="slideFricCoe"    column="slide_fric_coe"    />
+        <result property="la"    column="la"    />
+        <result property="b"    column="b"    />
+        <result property="h"    column="h"    />
+        <result property="r"    column="r"    />
+        <result property="c"    column="c"    />
+        <result property="qzClmc"    column="qz_clmc"    />
+        <result property="nominalTorsion"    column="nominal_torsion"    />
+        <result property="qbjzdwqyl"    column="qbjzdwqyl"    />
+        <result property="zcjzdjqyl"    column="zcjzdjqyl"    />
+        <result property="nd"    column="nd"    />
+    </resultMap>
+
+    <sql id="selectTbQzsjjsVo">
+        select pr_id, dzh, name, jcds, gcl, gclxc, hkxc, zdxccs, liangan_length, quzhou_zcj_dia, quzhou_qbj_dia, quzhou_qtm_dia, slide_fric_coe, la, b, h, r, c, qz_clmc, nominal_torsion, qbjzdwqyl, zcjzdjqyl, nd from tb_Qzsjjs
+    </sql>
+
+    <select id="selectTbQzsjjsList" parameterType="TbQzsjjs" resultMap="TbQzsjjsResult">
+        <include refid="selectTbQzsjjsVo"/>
+        <where>  
+            <if test="prId != null "> and pr_id = #{prId}</if>
+            <if test="dzh != null  and dzh != ''"> and dzh = #{dzh}</if>
+            <if test="quzhouQtmDia != null "> and quzhou_qtm_dia = #{quzhouQtmDia}</if>
+            <if test="slideFricCoe != null "> and slide_fric_coe = #{slideFricCoe}</if>
+            <if test="la != null "> and la = #{la}</if>
+            <if test="b != null "> and b = #{b}</if>
+            <if test="h != null "> and h = #{h}</if>
+            <if test="r != null "> and r = #{r}</if>
+            <if test="c != null "> and c = #{c}</if>
+            <if test="qzClmc != null  and qzClmc != ''"> and qz_clmc = #{qzClmc}</if>
+            <if test="nominalTorsion != null "> and nominal_torsion = #{nominalTorsion}</if>
+            <if test="qbjzdwqyl != null "> and qbjzdwqyl = #{qbjzdwqyl}</if>
+            <if test="zcjzdjqyl != null "> and zcjzdjqyl = #{zcjzdjqyl}</if>
+            <if test="nd != null "> and nd = #{nd}</if>
+        </where>
+    </select>
+    
+    <select id="selectTbQzsjjsByPrId" parameterType="Long" resultMap="TbQzsjjsResult">
+        <include refid="selectTbQzsjjsVo"/>
+        where pr_id = #{prId}
+    </select> 
+</mapper>
