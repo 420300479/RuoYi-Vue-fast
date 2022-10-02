@@ -90,4 +90,9 @@ public class TbFruit1ServiceImpl implements ITbFruit1Service
     {
         return tbFruit1Mapper.deleteTbFruit1ByFrid(frid);
     }
+
+    @Override
+    public List<TbFruit1> selectTbFruit1ListQuery(Long[] ids1) {
+        return tbFruit1Mapper.selectTbFruit1ListQuery(ids1);
+    }
 }

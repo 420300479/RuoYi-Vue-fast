@@ -60,6 +60,25 @@ public class AjaxResult extends HashMap<String, Object>
     }
 
     /**
+     * 初始化一个新创建的 AjaxResult 对象(多date)
+     *
+     * @param code  状态码
+     * @param msg   返回内容
+     * @param data1 数据对象
+     * @param data2 数据对象
+     */
+    public AjaxResult(int code, String msg, Object data1, Object data2) {
+        super.put(CODE_TAG, code);
+        super.put(MSG_TAG, msg);
+        if (StringUtils.isNotNull(data1)) {
+            super.put("data1", data1);
+        }
+        if (StringUtils.isNotNull(data2)) {
+            super.put("data2", data2);
+        }
+    }
+
+    /**
      * 返回成功消息
      * 
      * @return 成功消息

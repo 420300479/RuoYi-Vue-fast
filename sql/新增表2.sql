@@ -19,34 +19,40 @@ insert into tb_fruits values(1, 'dzh001', 1,1,1,1);
 
 -- ----------------------------              
 -- 1、钢制菠萝表        
--- ----------------------------   
-drop table if exists tb_fruit1;
-create table tb_fruit1 (
-  frid              numeric(15,0)    not null                  comment '表编号',
-  dzh               varchar(160)     not null                  comment '果子编号',
-  fname             varchar(160)     not null                  comment '果子名称',
-  num               numeric(1,0)     not null                  comment '个数',
-  forc1             numeric(11,2)    not null                  comment '力',
-  disp1             numeric(11,2)    not null                  comment '位移',
-  disp2             numeric(11,2)    not null                  comment '变形',
-  rounds            numeric(11,0)    not null                  comment '次数',
-  length1           numeric(11,2)    not null                  comment '长度1',
-  dia1              numeric(11,2)    not null                  comment '直径1',
-  dia2              numeric(11,2)    not null                  comment '直径2',
-  dia3              numeric(11,2)    not null                  comment '直径3',
-  coe3              numeric(4,3)     not null                  comment '系数',
-  length2           numeric(11,2)    null                      comment '长度2',
-  length3           numeric(11,2)    null                      comment '长度3',
-  height1           numeric(11,2)    null                      comment '高度1',
-  length4           numeric(11,2)    null                      comment '长度4',
-  radius1           numeric(11,2)    null                      comment '半径1',
-  mat1              varchar(64)      null                      comment '材料1',
-  torsion1          numeric(11,2)    not null                  comment '扭矩1',
-  stress1           numeric(11,2)    null                      comment '应力1',
-  stress2           numeric(11,2)    null                      comment '应力2',
-  stress3           numeric(11,2)    null                      comment '应力3',
-  primary key (frid)
-) engine=innodb auto_increment=200 comment = '钢制菠萝表';
+-- ----------------------------
+
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_fruit1`;
+CREATE TABLE `tb_fruit1`
+(
+    frid     bigint(20) not null AUTO_INCREMENT comment '表编号',
+    dzh      varchar(160)   not null comment '果子编号',
+    fname    varchar(160)   not null comment '果子名称',
+    num      numeric(1, 0)  not null comment '个数',
+    forc1    numeric(11, 2) not null comment '力',
+    disp1    numeric(11, 2) not null comment '位移',
+    disp2    numeric(11, 2) not null comment '变形',
+    rounds   numeric(11, 0) not null comment '次数',
+    length1  numeric(11, 2) not null comment '长度1',
+    dia1     numeric(11, 2) not null comment '直径1',
+    dia2     numeric(11, 2) not null comment '直径2',
+    dia3     numeric(11, 2) not null comment '直径3',
+    coe3     numeric(4, 3)  not null comment '系数',
+    length2  numeric(11, 2) null comment '长度2',
+    length3  numeric(11, 2) null comment '长度3',
+    height1  numeric(11, 2) null comment '高度1',
+    length4  numeric(11, 2) null comment '长度4',
+    radius1  numeric(11, 2) null comment '半径1',
+    mat1     varchar(64) null comment '材料1',
+    torsion1 numeric(11, 2) not null comment '扭矩1',
+    stress1  numeric(11, 2) null comment '应力1',
+    stress2  numeric(11, 2) null comment '应力2',
+    stress3  numeric(11, 2) null comment '应力3',
+    PRIMARY KEY (`frid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2015 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '钢制菠萝表' ROW_FORMAT = DYNAMIC;
+
+
+
 -- ----------------------------
 -- 初始化菠萝表数据
 -- ----------------------------
@@ -57,30 +63,33 @@ insert into tb_fruit1 values(3, 'dzh001', '菠萝3',2,2500,7,150,40,300,80,60,50
 -- ----------------------------              
 -- 2、铸铁西瓜表        
 -- ----------------------------   
+
 drop table if exists tb_fruit2;
-create table tb_fruit2 (
-  frid              numeric(15,0)    not null                  comment '表编号',
-  dzh               varchar(160)     not null                  comment '果子编号',
-  fname             varchar(160)     not null                  comment '果子名称',
-  disp1             numeric(11,2)    not null                  comment '变形',
-  rounds            numeric(11,0)    not null                  comment '次数',
-  length1           numeric(11,2)    not null                  comment '长度1',
-  dia1              numeric(11,2)    not null                  comment '直径1',
-  dia2              numeric(11,2)    not null                  comment '直径2',
-  dia3              numeric(11,2)    not null                  comment '直径3',
-  coe3              numeric(4,3)     not null                  comment '系数',
-  length2           numeric(11,2)    null                      comment '长度2',
-  length3           numeric(11,2)    null                      comment '长度3',
-  height1           numeric(11,2)    null                      comment '高度1',
-  length4           numeric(11,2)    null                      comment '长度4',
-  radius1           numeric(11,2)    null                      comment '半径1',
-  mat1              varchar(64)      null                      comment '材料1',
-  torsion1          numeric(11,2)    not null                  comment '扭矩1',
-  stress1           numeric(11,2)    null                      comment '应力1',
-  stress2           numeric(11,2)    null                      comment '应力2',
-  deform            numeric(11,2)    null                      comment '挠度',
-  primary key (frid)
-) engine=innodb auto_increment=200 comment = '铸铁西瓜表';
+create table tb_fruit2
+(
+    frid     bigint(20) not null AUTO_INCREMENT comment '表编号',
+    dzh      varchar(160)   not null comment '果子编号',
+    fname    varchar(160)   not null comment '果子名称',
+    disp1    numeric(11, 2) not null comment '变形',
+    rounds   numeric(11, 0) not null comment '次数',
+    length1  numeric(11, 2) not null comment '长度1',
+    dia1     numeric(11, 2) not null comment '直径1',
+    dia2     numeric(11, 2) not null comment '直径2',
+    dia3     numeric(11, 2) not null comment '直径3',
+    coe3     numeric(4, 3)  not null comment '系数',
+    length2  numeric(11, 2) null comment '长度2',
+    length3  numeric(11, 2) null comment '长度3',
+    height1  numeric(11, 2) null comment '高度1',
+    length4  numeric(11, 2) null comment '长度4',
+    radius1  numeric(11, 2) null comment '半径1',
+    mat1     varchar(64) null comment '材料1',
+    torsion1 numeric(11, 2) not null comment '扭矩1',
+    stress1  numeric(11, 2) null comment '应力1',
+    stress2  numeric(11, 2) null comment '应力2',
+    deform   numeric(11, 2) null comment '挠度',
+    primary key (frid)
+) ENGINE = InnoDB AUTO_INCREMENT = 2015 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '铸铁西瓜表' ROW_FORMAT = DYNAMIC;
+
 -- ----------------------------
 -- 初始化-铸铁西瓜表数据
 -- ----------------------------

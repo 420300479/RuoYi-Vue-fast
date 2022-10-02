@@ -58,4 +58,6 @@ public interface TbFruit2Mapper
      * @return 结果
      */
     public int deleteTbFruit2ByFrids(Long[] frids);
+
+    List<TbFruit2> selectTbFruit2ListQuery(Long[] ids2);
 }

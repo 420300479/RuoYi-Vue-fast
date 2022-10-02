@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.*;
 
@@ -440,7 +437,7 @@ public class PdfUtil<T> {
         cell.setPhrase(new Phrase(value, textfont));
         cell.setBackgroundColor(new BaseColor(255, 255, 255));
         cell.setColspan(1);
-//		cell.setFixedHeight(35);
+		cell.setFixedHeight(35);
         return cell;
     }
 
@@ -1076,41 +1073,41 @@ public class PdfUtil<T> {
      * @return 结果
      */
 
-    public void exportPdfMany(HttpServletResponse response, List listTem, String title) throws IOException {
-        List<String> sourceFilePaths = new ArrayList<String>();
+    public String exportPdfMany(HttpServletResponse response, List listTem, String title) throws IOException {
+        String output = "";
         response.setCharacterEncoding("utf-8");
         try {
-            for (int i = 0; i < listTem.size(); i++) {
-                List<T> list = (List<T>) listTem.get(i);
-                this.init(list, title, Excel.Type.EXPORT);
-                //生成pdf数据
-                List<String> header = new ArrayList<String>();
-                // 获取注解字段长度
-                int length = fields.size();
-                //创建一个PDF
-                PdfPTable table = PdfUtil.createTable(length);
-                table.addCell(PdfUtil.createHeadCell(this.title, length));
-                for (Object[] os : fields) {
-                    Excel excel = (Excel) os[1];
-                    table.addCell(PdfUtil.createTitleCell_1(excel.name()));
-                }
-                if (Excel.Type.EXPORT.equals(type)) {
-                    table = fillPdfData(table);
-                }
-                // 获得文件名
-                String fileName = encodingFilename(this.title);
-                // 重命名，加上服务器的文件夹路径
-                String output = getAbsoluteFile(fileName);
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(output)));
-                // 把pdf文件加密、加水印，存入服务器的文件夹
-                PdfUtil.exportPdf(out, table, "");
-                PdfReader.unethicalreading = true;
-                sourceFilePaths.add(output);
+            this.init(listTem, title, Excel.Type.EXPORT);
+            //生成pdf数据
+            List<String> header = new ArrayList<String>();
+            // 获取注解字段长度
+            int length = fields.size();
+            //创建一个PDF
+            PdfPTable table = PdfUtil.createTable(length);
+            table.addCell(PdfUtil.createHeadCell(this.title, length));
+            for (Object[] os : fields) {
+                Excel excel = (Excel) os[1];
+                table.addCell(PdfUtil.createTitleCell_1(excel.name()));
             }
+            if (Excel.Type.EXPORT.equals(type)) {
+                table = fillPdfData(table);
+            }
+            // 获得文件名
+            String fileName = encodingFilename(this.title);
+            // 重命名，加上服务器的文件夹路径
+            output = getAbsoluteFile(fileName);
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(output)));
+            // 把pdf文件加密、加水印，存入服务器的文件夹
+            PdfUtil.exportPdf(out, table, "");
+            PdfReader.unethicalreading = true;
         } catch (Exception e) {
             log.error("导出PDF异常{}", e.getMessage());
             throw new UtilException("导出PDF失败，请联系网站管理员！");
         }
+        return output;
+    }
+
+    private void extractedTem(HttpServletResponse response, List<String> sourceFilePaths) throws IOException {
         //合并PDF文件
         String output = this.mergePdfFile(sourceFilePaths, "test_merged.pdf");
         // 输出pdf文件的二进制文件流

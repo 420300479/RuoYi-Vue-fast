@@ -58,4 +58,6 @@ public interface ITbFruit1Service
      * @return 结果
      */
     public int deleteTbFruit1ByFrid(Long frid);
+
+    List<TbFruit1> selectTbFruit1ListQuery(Long[] ids1);
 }

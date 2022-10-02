@@ -81,24 +81,7 @@ public class TbQzsjjsController extends BaseController
         util.exportPdf(response, list, "计算数据");        
     }
 
-    /**
-     * 导出计算列表的Pdf文件（多文件）
-     *
-     * @return
-     * @throws Exception
-     */
-    @PreAuthorize("@ss.hasPermi('design:report:exportPortDocF')")
-    @Log(title = "计算", businessType = BusinessType.EXPORT)
-    @PostMapping("/exportPortDocfMany")
-    public void exportPortDocfMany(HttpServletResponse response, TbQzsjjs tbQzsjjs) throws IOException {
-        List<TbQzsjjs> list = tbQzsjjsService.selectTbQzsjjsList(tbQzsjjs);
 
-        ArrayList<List> listTem = new ArrayList<>();
-        listTem.add(list);
-        listTem.add(list);
-        PdfUtil<TbQzsjjs> util = new PdfUtil<TbQzsjjs>(TbQzsjjs.class);
-        util.exportPdfMany(response, listTem, "合并数据");
-    }
     
     /**
      * 获取计算详细信息

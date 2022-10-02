@@ -43,7 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectTbFruit2Vo"/>
         where frid = #{frid}
     </select>
-        
+
+    <select id="selectTbFruit2ListQuery" resultMap="TbFruit2Result">
+        <include refid="selectTbFruit2Vo"/>
+        <if test="ids2 != null  and ids2.length>0 ">
+            where frid in
+            <foreach collection="array" item="ids2" open="(" separator="," close=")">
+                #{ids2}
+            </foreach>
+        </if>
+    </select>
+
     <insert id="insertTbFruit2" parameterType="TbFruit2">
         insert into tb_fruit2
         <trim prefix="(" suffix=")" suffixOverrides=",">
